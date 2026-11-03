@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #FAF9F5;
+  --bg-secondary: #F3F1EA;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F6F5EE;
+  --border-subtle: #E5E3D8;
+  --border-strong: #D1CEC0;
+  --text-primary: #141413;
+  --text-secondary: #403F3A;
+  --text-muted: #737168;
+  --accent-forest: #284E3A;
+  --accent-forest-hover: #1E3B2C;
+  --accent-forest-soft: #EAF2EC;
+  --accent-forest-border: #C6DCCD;
+  --rule-color: #E2DFD2;
+}
+
+.dark {
+  --bg-primary: #111211;
+  --bg-secondary: #171816;
+  --bg-card: #1C1D1B;
+  --bg-card-subtle: #222421;
+  --border-subtle: #2A2C29;
+  --border-strong: #3B3E39;
+  --text-primary: #F2F1ED;
+  --text-secondary: #BFBEB6;
+  --text-muted: #7E7C74;
+  --accent-forest: #4E8767;
+  --accent-forest-hover: #63A37E;
+  --accent-forest-soft: #17261E;
+  --accent-forest-border: #2B4536;
+  --rule-color: #262825;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  selection-background-color: #284E3A;
+  selection-color: #FAF9F5;
+}
+
+::selection {
+  background-color: #284E3A;
+  color: #FAF9F5;
+}
+
+.dark ::selection {
+  background-color: #4E8767;
+  color: #111211;
+}
+
+/* Editorial hairline rules */
+.editorial-rule {
+  border-top: 1px solid var(--rule-color);
+}
+
+.editorial-rule-b {
+  border-bottom: 1px solid var(--rule-color);
+}
+
+.editorial-rule-l {
+  border-left: 1px solid var(--rule-color);
+}
+
+.editorial-rule-r {
+  border-right: 1px solid var(--rule-color);
+}
+
+/* Subtle micro-grid background pattern for technical sections */
+.grid-subtle {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}
+
+.dark .grid-subtle {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
