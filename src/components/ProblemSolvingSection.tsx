@@ -1,6 +1,7 @@
 'use client';
 
-import { Flame, Code2, Trophy, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Flame, Code2, Trophy } from 'lucide-react';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
 
 export default function ProblemSolvingSection() {
@@ -40,7 +41,14 @@ export default function ProblemSolvingSection() {
   ];
 
   return (
-    <section id="dsa" className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10">
+    <motion.section
+      id="dsa"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10"
+    >
       <div className="mb-4">
         <h2 className="text-base font-semibold text-white">
           Problem Solving &amp; DSA
@@ -50,7 +58,7 @@ export default function ProblemSolvingSection() {
         </p>
       </div>
 
-      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all space-y-5">
+      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all duration-200 space-y-5 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
         {/* Total metric banner */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#26282a]">
           <div>
@@ -78,7 +86,7 @@ export default function ProblemSolvingSection() {
             return (
               <div
                 key={p.name}
-                className="p-3.5 rounded-md bg-[#161718] border border-[#26282a] space-y-1.5"
+                className="p-3.5 rounded-md bg-[#161718] border border-[#26282a] hover:border-[#444444] hover:-translate-y-0.5 transition-all duration-200 space-y-1.5"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium text-white">{p.name}</span>
@@ -104,7 +112,7 @@ export default function ProblemSolvingSection() {
             {topics.map((t) => (
               <span
                 key={t}
-                className="text-[11px] font-mono text-[#b3b3b3] bg-[#1a1b1c] border border-white/[0.08] rounded px-2.5 py-1"
+                className="text-[11px] font-mono text-[#b3b3b3] bg-[#1a1b1c] hover:bg-[#232326] border border-white/[0.08] hover:border-[#666666] rounded px-2.5 py-1 transition-colors cursor-default"
               >
                 {t}
               </span>
@@ -112,6 +120,6 @@ export default function ProblemSolvingSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

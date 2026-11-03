@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, Phone, Check, Copy, ArrowUp, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './icons';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
@@ -34,7 +35,14 @@ export default function ContactSection() {
   };
 
   return (
-    <footer id="contact" className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10 pb-16">
+    <motion.footer
+      id="contact"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10 pb-16"
+    >
       <div className="mb-4">
         <h2 className="text-base font-semibold text-white">
           Contact
@@ -44,7 +52,7 @@ export default function ContactSection() {
         </p>
       </div>
 
-      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all space-y-4">
+      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all space-y-4 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
         <p className="text-xs sm:text-[13px] text-[#b3b3b3] leading-relaxed">
           I&apos;m always interested in interesting ideas, meaningful collaborations, and conversations about technology. Feel free to reach out directly via email, telephone, or connect on social platforms.
         </p>
@@ -54,7 +62,7 @@ export default function ContactSection() {
           {/* Email button */}
           <button
             onClick={handleCopyEmail}
-            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all text-left"
+            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] hover:-translate-y-0.5 active:scale-95 border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all text-left shadow-[0_2px_6px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center gap-2.5">
               <Mail className="w-4 h-4 text-[#3b82f6]" />
@@ -76,7 +84,7 @@ export default function ContactSection() {
           {/* Phone button */}
           <button
             onClick={handleCopyPhone}
-            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all text-left"
+            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] hover:-translate-y-0.5 active:scale-95 border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all text-left shadow-[0_2px_6px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center gap-2.5">
               <Phone className="w-4 h-4 text-[#02ff67]" />
@@ -100,7 +108,7 @@ export default function ContactSection() {
             href={PERSONAL_DETAILS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all"
+            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] hover:-translate-y-0.5 border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all shadow-[0_2px_6px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center gap-2.5">
               <GithubIcon className="w-4 h-4 text-white" />
@@ -117,7 +125,7 @@ export default function ContactSection() {
             href={PERSONAL_DETAILS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all"
+            className="flex items-center justify-between p-3 rounded-md bg-[#1a1b1c] hover:bg-[#232326] hover:-translate-y-0.5 border border-[#333333] hover:border-[#666666] text-white text-xs font-medium transition-all shadow-[0_2px_6px_rgba(0,0,0,0.3)]"
           >
             <div className="flex items-center gap-2.5">
               <LinkedinIcon className="w-4 h-4 text-[#0a66c2]" />
@@ -144,6 +152,6 @@ export default function ContactSection() {
           <ArrowUp className="w-3 h-3" />
         </button>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

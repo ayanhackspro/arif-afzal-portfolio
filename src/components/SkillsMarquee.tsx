@@ -1,14 +1,15 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 const TRACK_1 = [
   'Java',
   'ReactJS',
-  'Next.js',
+  'Next.js 15',
   'TypeScript',
   'JavaScript (ES6+)',
   'Node.js',
   'AWS Lambda',
-  'Serverless',
   'WebSocket API',
   'Tailwind CSS',
   'PHP',
@@ -32,7 +33,14 @@ const TRACK_2 = [
 
 export default function SkillsMarquee() {
   return (
-    <section id="skills" className="max-w-[720px] mx-auto px-4 sm:px-5 mt-9">
+    <motion.section
+      id="skills"
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 mt-9"
+    >
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-xs font-mono uppercase tracking-wider text-[#999999]">
           Technologies &amp; Tools
@@ -42,29 +50,29 @@ export default function SkillsMarquee() {
         </span>
       </div>
 
-      <div className="relative overflow-hidden skills-mask marquee-pause flex flex-col gap-2.5 py-1">
-        {/* Track 1: Scrolls Left */}
-        <div className="overflow-hidden flex">
-          <div className="animate-marquee-left flex items-center gap-2">
-            {[...TRACK_1, ...TRACK_1].map((skill, index) => (
+      <div className="relative overflow-hidden marquee-mask marquee-wrapper flex flex-col gap-2.5 py-1">
+        {/* Track 1: Smooth Infinite Scroll Left */}
+        <div className="overflow-hidden flex w-full">
+          <div className="marquee-track-left flex items-center gap-2">
+            {[...TRACK_1, ...TRACK_1, ...TRACK_1, ...TRACK_1].map((skill, index) => (
               <span
-                key={`${skill}-${index}`}
-                className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-full px-3 py-1 text-xs font-medium transition-all cursor-default whitespace-nowrap"
+                key={`t1-${skill}-${index}`}
+                className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-full px-3 py-1 text-xs font-medium transition-all cursor-default whitespace-nowrap shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#02ff67]"></span>
                 <span>{skill}</span>
               </span>
             ))}
           </div>
         </div>
 
-        {/* Track 2: Scrolls Right */}
-        <div className="overflow-hidden flex">
-          <div className="animate-marquee-right flex items-center gap-2">
-            {[...TRACK_2, ...TRACK_2].map((skill, index) => (
+        {/* Track 2: Smooth Infinite Scroll Right */}
+        <div className="overflow-hidden flex w-full">
+          <div className="marquee-track-right flex items-center gap-2">
+            {[...TRACK_2, ...TRACK_2, ...TRACK_2, ...TRACK_2].map((skill, index) => (
               <span
-                key={`${skill}-${index}`}
-                className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-full px-3 py-1 text-xs font-medium transition-all cursor-default whitespace-nowrap"
+                key={`t2-${skill}-${index}`}
+                className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-full px-3 py-1 text-xs font-medium transition-all cursor-default whitespace-nowrap shadow-[0_1px_3px_rgba(0,0,0,0.3)]"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
                 <span>{skill}</span>
@@ -73,6 +81,6 @@ export default function SkillsMarquee() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

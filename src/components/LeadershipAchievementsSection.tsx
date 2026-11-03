@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Award, Cloud, Shield, Palette } from 'lucide-react';
 import { ACHIEVEMENTS } from '@/data/portfolioData';
 
@@ -9,7 +10,14 @@ export default function LeadershipAchievementsSection() {
   const certItems = ACHIEVEMENTS.filter((a) => a.type === 'certification');
 
   return (
-    <section id="achievements" className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10">
+    <motion.section
+      id="achievements"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10"
+    >
       <div className="mb-4">
         <h2 className="text-base font-semibold text-white">
           Leadership &amp; Achievements
@@ -22,7 +30,7 @@ export default function LeadershipAchievementsSection() {
       <div className="space-y-4">
         {/* Startup Bihar Funding Card */}
         {fundingItem && (
-          <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all">
+          <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] hover:-translate-y-0.5 transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#26282a]">
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -49,7 +57,7 @@ export default function LeadershipAchievementsSection() {
         )}
 
         {/* Community Leadership & Facilitator Roles */}
-        <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] transition-all space-y-4">
+        <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-[#121314] hover:-translate-y-0.5 transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.3)] space-y-4">
           <div className="flex items-center gap-2 pb-3 border-b border-[#26282a]">
             <Cloud className="w-4 h-4 text-[#3b82f6]" />
             <h3 className="font-semibold text-white text-sm">
@@ -92,6 +100,6 @@ export default function LeadershipAchievementsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

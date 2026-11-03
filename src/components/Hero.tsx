@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, Check, Copy, MapPin, GraduationCap, Award, ArrowUpRight, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, Check, MapPin, GraduationCap, ArrowUpRight, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './icons';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
 
@@ -19,17 +20,23 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="max-w-[720px] mx-auto px-4 sm:px-5 pt-8 sm:pt-10">
-      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-transparent transition-all shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+    <motion.section
+      id="home"
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 pt-7 sm:pt-9"
+    >
+      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-transparent transition-all shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
         {/* Header: Avatar + Meta */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-          {/* Avatar */}
+          {/* Avatar with pulsing status indicator */}
           <div className="relative shrink-0 self-start">
-            <div className="w-[72px] h-[72px] rounded-full bg-[#1a1b1c] border-2 border-[#222222] flex items-center justify-center text-xl font-mono font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+            <div className="w-[72px] h-[72px] rounded-full bg-[#1a1b1c] border-2 border-[#222222] flex items-center justify-center text-xl font-mono font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
               AA
             </div>
             <span
-              className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#02ff67] rounded-full border-2 border-[#0b0d0e] shadow-[0_0_8px_#02ff67]"
+              className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#02ff67] rounded-full border-2 border-[#0b0d0e] animate-status-glow"
               title="Available for opportunities"
             />
           </div>
@@ -40,9 +47,9 @@ export default function Hero() {
               <h1 className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none">
                 {PERSONAL_DETAILS.name}
               </h1>
-              {/* Status pill */}
-              <span className="inline-flex items-center gap-1.5 bg-[#091d11] text-[#02ff67] border border-[#02ff67]/25 rounded-full px-2.5 py-0.5 text-xs font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#02ff67] animate-pulse"></span>
+              {/* Status pill with glowing dot */}
+              <span className="inline-flex items-center gap-1.5 bg-[#091d11] text-[#02ff67] border border-[#02ff67]/30 rounded-full px-2.5 py-0.5 text-xs font-medium shadow-[0_0_10px_rgba(2,255,103,0.15)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#02ff67] animate-ping" />
                 Available for work
               </span>
             </div>
@@ -92,7 +99,7 @@ export default function Hero() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopyEmail}
-              className="inline-flex items-center gap-2 bg-[#1a1b1c] hover:bg-[#232326] text-white border border-[#333333] hover:border-[#666666] rounded-md px-3.5 py-1.5 text-xs font-medium transition-all shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+              className="inline-flex items-center gap-2 bg-[#1a1b1c] hover:bg-[#232326] active:scale-95 text-white border border-[#333333] hover:border-[#666666] rounded-md px-3.5 py-1.5 text-xs font-medium transition-all shadow-[0_2px_8px_rgba(0,0,0,0.3)] hover:-translate-y-0.5"
             >
               {copied ? (
                 <>
@@ -114,7 +121,7 @@ export default function Hero() {
               href={PERSONAL_DETAILS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-all hover:-translate-y-0.5"
             >
               <GithubIcon className="w-3.5 h-3.5" />
               <span>GitHub</span>
@@ -124,7 +131,7 @@ export default function Hero() {
               href={PERSONAL_DETAILS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-all hover:-translate-y-0.5"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
               <span>LinkedIn</span>
@@ -132,7 +139,7 @@ export default function Hero() {
 
             <a
               href={`tel:${PERSONAL_DETAILS.phone.replace(/\s+/g, '')}`}
-              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-all hover:-translate-y-0.5"
             >
               <Phone className="w-3 h-3" />
               <span className="hidden sm:inline">Call</span>
@@ -140,6 +147,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

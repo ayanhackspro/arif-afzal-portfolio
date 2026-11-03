@@ -1,12 +1,20 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { ArrowUpRight, Radio, Activity, CloudSun, ExternalLink } from 'lucide-react';
 import { GithubIcon } from './icons';
 import { PROJECTS } from '@/data/portfolioData';
 
 export default function SelectedWork() {
   return (
-    <section id="projects" className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10">
+    <motion.section
+      id="projects"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="max-w-[720px] mx-auto px-4 sm:px-5 mt-10"
+    >
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-base font-semibold text-white">
@@ -20,7 +28,7 @@ export default function SelectedWork() {
           href="https://github.com/Arifafzal51"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-mono text-[#b3b3b3] hover:text-white flex items-center gap-1"
+          className="text-xs font-mono text-[#b3b3b3] hover:text-white flex items-center gap-1 transition-colors"
         >
           <span>All repos</span>
           <ArrowUpRight className="w-3 h-3" />
@@ -29,7 +37,7 @@ export default function SelectedWork() {
 
       <div className="flex flex-col gap-4">
         {/* Project 1: BubbleChat */}
-        <div className="border border-[#333333] hover:border-[#666666] rounded-[10px] bg-[#121314] overflow-hidden transition-all group">
+        <div className="border border-[#333333] hover:border-[#666666] hover:-translate-y-0.5 rounded-[10px] bg-[#121314] overflow-hidden transition-all duration-200 group shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
           <div className="p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
@@ -54,7 +62,7 @@ export default function SelectedWork() {
                     href={PROJECTS[0].links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-colors"
+                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-all hover:scale-105"
                     title="Live App"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -65,7 +73,7 @@ export default function SelectedWork() {
                     href={PROJECTS[0].links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-colors"
+                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-all hover:scale-105"
                     title="Source Code"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
@@ -103,7 +111,7 @@ export default function SelectedWork() {
         </div>
 
         {/* Project 2: Deal Detective */}
-        <div className="border border-[#333333] hover:border-[#666666] rounded-[10px] bg-[#121314] overflow-hidden transition-all group">
+        <div className="border border-[#333333] hover:border-[#666666] hover:-translate-y-0.5 rounded-[10px] bg-[#121314] overflow-hidden transition-all duration-200 group shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
           <div className="p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
@@ -128,7 +136,7 @@ export default function SelectedWork() {
                     href={PROJECTS[1].links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-colors"
+                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-all hover:scale-105"
                     title="Source Code"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
@@ -169,7 +177,7 @@ export default function SelectedWork() {
         </div>
 
         {/* Project 3: SkySight */}
-        <div className="border border-[#333333] hover:border-[#666666] rounded-[10px] bg-[#121314] overflow-hidden transition-all group">
+        <div className="border border-[#333333] hover:border-[#666666] hover:-translate-y-0.5 rounded-[10px] bg-[#121314] overflow-hidden transition-all duration-200 group shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
           <div className="p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
@@ -194,7 +202,7 @@ export default function SelectedWork() {
                     href={PROJECTS[2].links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-colors"
+                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-all hover:scale-105"
                     title="Live Demo"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -205,7 +213,7 @@ export default function SelectedWork() {
                     href={PROJECTS[2].links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-colors"
+                    className="p-1.5 rounded-md bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] transition-all hover:scale-105"
                     title="Source Code"
                   >
                     <GithubIcon className="w-3.5 h-3.5" />
@@ -232,6 +240,6 @@ export default function SelectedWork() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
