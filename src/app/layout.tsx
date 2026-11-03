@@ -3,10 +3,7 @@ import './globals.css';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF9F5' },
-    { media: '(prefers-color-scheme: dark)', color: '#111211' },
-  ],
+  themeColor: '#0b0d0e',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -15,37 +12,37 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://arifafzal.dev'),
   title: {
-    default: 'Arif Afzal — Software Developer, Technical Educator & Founder',
+    default: 'Arif Afzal — Software Developer, CS Instructor & Founder',
     template: '%s | Arif Afzal',
   },
   description:
-    'Independent portfolio of Arif Afzal. Software developer, computer science educator, and founder based in West Champaran, Bihar, India. Focused on real-time systems, algorithmic engineering, and educational leadership.',
+    'Arif Afzal is a software developer, computer science educator, and founder based in West Champaran, Bihar, India. Builder of BubbleChat, Deal Detective, and mentor to 150+ students in Data Structures & Web Technologies.',
+  authors: [{ name: 'Arif Afzal', url: 'https://github.com/Arifafzal51' }],
+  creator: 'Arif Afzal',
   keywords: [
     'Arif Afzal',
-    'Software Developer Bihar',
+    'Software Developer India',
     'Full Stack Engineer',
     'Computer Science Instructor',
-    'GLA University Alumnus',
+    'GLA University',
+    'West Champaran Bihar',
     'BubbleChat',
     'Deal Detective',
     'Essence Royale Founder',
-    'Data Structures and Algorithms Java',
-    'AWS Serverless React Developer',
+    'DSA in Java',
   ],
-  authors: [{ name: 'Arif Afzal', url: 'https://github.com/Arifafzal51' }],
-  creator: 'Arif Afzal',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://arifafzal.dev',
-    title: 'Arif Afzal — Software Developer, Technical Educator & Founder',
+    title: 'Arif Afzal — Software Developer, CS Instructor & Founder',
     description:
       'Building things. Solving problems. Sharing knowledge. Software developer, educator, and startup founder from West Champaran, Bihar.',
-    siteName: 'Arif Afzal Portfolio',
+    siteName: 'Arif Afzal',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Arif Afzal — Software Developer, Technical Educator & Founder',
+    title: 'Arif Afzal — Software Developer, CS Instructor & Founder',
     description:
       'Building things. Solving problems. Sharing knowledge. Explore selected systems, technical teaching, and startup achievements.',
   },
@@ -67,9 +64,11 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: PERSONAL_DETAILS.name,
-    jobTitle: 'Software Developer & Technical Educator',
+    jobTitle: 'Software Developer & Computer Science Educator',
     description: PERSONAL_DETAILS.tagline,
     url: 'https://arifafzal.dev',
+    email: PERSONAL_DETAILS.email,
+    telephone: PERSONAL_DETAILS.phone,
     sameAs: [
       PERSONAL_DETAILS.github,
       PERSONAL_DETAILS.linkedin,
@@ -80,59 +79,44 @@ export default function RootLayout({
       addressRegion: 'Bihar',
       addressCountry: 'India',
     },
-    alumnusOf: {
-      '@type': 'EducationalOrganization',
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
       name: PERSONAL_DETAILS.education.institution,
     },
     knowsAbout: [
-      'Software Engineering',
-      'Data Structures & Algorithms',
-      'React.js',
-      'Next.js',
-      'Cloud Computing',
-      'AWS Lambda',
-      'Serverless Architecture',
-      'WebSocket Systems',
       'Java',
-      'Competitive Programming',
+      'Data Structures & Algorithms',
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'Node.js',
+      'AWS Lambda',
+      'Serverless',
+      'WebSocket API',
+      'Tailwind CSS',
+      'Full Stack Web Development',
     ],
   };
 
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
           rel="stylesheet"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (saved === 'dark' || (!saved && prefersDark)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className="min-h-screen font-sans bg-[#FAF9F5] dark:bg-[#111211] text-[#141413] dark:text-[#F2F1ED] antialiased selection:bg-[#284E3A] selection:text-[#FAF9F5] dark:selection:bg-[#4E8767] dark:selection:text-[#111211] transition-colors duration-300">
+      <body className="min-h-screen bg-[#0b0d0e] text-[#b3b3b3] antialiased selection:bg-white/20 selection:text-white">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-forest text-white text-xs font-mono tracking-wider uppercase rounded-sm shadow-md"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-3 py-1.5 bg-[#1a1b1c] text-white text-xs font-mono border border-[#333333] rounded"
         >
           Skip to main content
         </a>

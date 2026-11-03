@@ -1,197 +1,142 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { ArrowDownRight, ArrowUpRight, Terminal, Clock, MapPin, Award, Users, Code2 } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Check, Copy, MapPin, GraduationCap, Award, ArrowUpRight, Phone } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './icons';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
 
 export default function Hero() {
-  const [currentTime, setCurrentTime] = useState<string>('');
+  const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const updateTime = () => {
-      try {
-        const timeStr = new Intl.DateTimeFormat('en-IN', {
-          timeZone: 'Asia/Kolkata',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
-        }).format(new Date());
-        setCurrentTime(timeStr);
-      } catch {
-        setCurrentTime(new Date().toLocaleTimeString());
-      }
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(PERSONAL_DETAILS.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      // fallback
+    }
+  };
 
   return (
-    <section
-      id="home"
-      className="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden border-b border-[#EAE8DE] dark:border-[#202220]"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Editorial Sub-header Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-8 mb-12 border-b border-[#E5E3D8] dark:border-[#262825] text-xs font-mono tracking-wider uppercase text-[#737168] dark:text-[#7E7C74]">
-          <div className="md:col-span-6 flex items-center space-x-2">
-            <span className="inline-block w-1.5 h-1.5 bg-[#284E3A] dark:bg-[#4E8767]"></span>
-            <span>{PERSONAL_DETAILS.roleLabel}</span>
+    <section id="home" className="max-w-[720px] mx-auto px-4 sm:px-5 pt-8 sm:pt-10">
+      <div className="border border-[#333333] hover:border-[#444444] rounded-[10px] p-5 sm:p-6 bg-transparent transition-all shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+        {/* Header: Avatar + Meta */}
+        <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+          {/* Avatar */}
+          <div className="relative shrink-0 self-start">
+            <div className="w-[72px] h-[72px] rounded-full bg-[#1a1b1c] border-2 border-[#222222] flex items-center justify-center text-xl font-mono font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+              AA
+            </div>
+            <span
+              className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#02ff67] rounded-full border-2 border-[#0b0d0e] shadow-[0_0_8px_#02ff67]"
+              title="Available for opportunities"
+            />
           </div>
-          <div className="md:col-span-3 flex items-center space-x-2">
-            <MapPin className="w-3.5 h-3.5 text-[#284E3A] dark:text-[#4E8767]" />
-            <span>{PERSONAL_DETAILS.location}</span>
-          </div>
-          <div className="md:col-span-3 flex items-center justify-start md:justify-end space-x-2">
-            <Clock className="w-3.5 h-3.5 text-[#284E3A] dark:text-[#4E8767]" />
-            <span>{currentTime ? `${currentTime} IST` : 'INDIA STANDARD TIME'}</span>
-          </div>
-        </div>
 
-        {/* Asymmetrical Main Hero Composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Massive Editorial Typography & Narrative */}
-          <div className="lg:col-span-8 space-y-8">
-            <div className="space-y-2">
-              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.04] text-[#141413] dark:text-[#F2F1ED] font-normal">
-                <span className="block italic">{PERSONAL_DETAILS.headline.line1}</span>
-                <span className="block font-medium">{PERSONAL_DETAILS.headline.line2}</span>
-                <span className="block text-[#403F3A] dark:text-[#BFBEB6]">{PERSONAL_DETAILS.headline.line3}</span>
+          {/* Intro text */}
+          <div className="flex-1 space-y-2">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <h1 className="text-2xl sm:text-[26px] font-bold text-white tracking-tight leading-none">
+                {PERSONAL_DETAILS.name}
               </h1>
-            </div>
-
-            <p className="text-lg sm:text-xl text-[#403F3A] dark:text-[#BFBEB6] leading-relaxed max-w-2xl font-light">
-              {PERSONAL_DETAILS.tagline}
-            </p>
-
-            {/* Restrained CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Link
-                href="#projects"
-                className="group inline-flex items-center space-x-2 px-6 py-3.5 bg-[#141413] dark:bg-[#F2F1ED] text-[#FAF9F5] dark:text-[#111211] text-xs font-mono uppercase tracking-widest hover:bg-[#284E3A] dark:hover:bg-[#4E8767] dark:hover:text-[#FAF9F5] transition-all duration-200"
-              >
-                <span>Explore My Work</span>
-                <ArrowDownRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
-              </Link>
-
-              <Link
-                href="#contact"
-                className="group inline-flex items-center space-x-2 px-6 py-3.5 border border-[#141413] dark:border-[#F2F1ED] text-[#141413] dark:text-[#F2F1ED] text-xs font-mono uppercase tracking-widest hover:bg-[#F3F1EA] dark:hover:bg-[#1A1C1A] transition-all duration-200"
-              >
-                <span>Get In Touch</span>
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-
-              <a
-                href="https://github.com/Arifafzal51"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1.5 px-4 py-3.5 text-xs font-mono text-[#737168] dark:text-[#7E7C74] hover:text-[#141413] dark:hover:text-[#F2F1ED] transition-colors"
-              >
-                <span>GitHub</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-
-              <a
-                href="https://linkedin.com/in/hyarif/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1.5 px-4 py-3.5 text-xs font-mono text-[#737168] dark:text-[#7E7C74] hover:text-[#141413] dark:hover:text-[#F2F1ED] transition-colors"
-              >
-                <span>LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Technical Dossier & Telemetry Card */}
-          <div className="lg:col-span-4 border border-[#E5E3D8] dark:border-[#262825] bg-[#FAF9F5] dark:bg-[#151715] p-6 lg:p-7 space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-[#EAE8DE] dark:border-[#202220]">
-              <div className="flex items-center space-x-2">
-                <Terminal className="w-4 h-4 text-[#284E3A] dark:text-[#4E8767]" />
-                <span className="text-xs font-mono uppercase tracking-wider text-[#141413] dark:text-[#F2F1ED] font-semibold">
-                  Field Dossier
-                </span>
-              </div>
-              <span className="text-[10px] font-mono text-[#737168] dark:text-[#7E7C74]">
-                REF: AFZAL.2026
+              {/* Status pill */}
+              <span className="inline-flex items-center gap-1.5 bg-[#091d11] text-[#02ff67] border border-[#02ff67]/25 rounded-full px-2.5 py-0.5 text-xs font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#02ff67] animate-pulse"></span>
+                Available for work
               </span>
             </div>
 
-            {/* Key Telemetry Matrix */}
-            <div className="space-y-4">
-              <div className="p-3.5 bg-[#F5F3EC] dark:bg-[#1B1D1B] border border-[#E8E6DB] dark:border-[#252825] transition-colors">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#737168] dark:text-[#7E7C74]">
-                      Algorithmic Problem Solving
-                    </span>
-                    <div className="font-serif text-3xl font-medium text-[#141413] dark:text-[#F2F1ED]">
-                      400+
-                    </div>
-                  </div>
-                  <Code2 className="w-5 h-5 text-[#284E3A] dark:text-[#4E8767] mt-1" />
-                </div>
-                <div className="mt-2 text-xs text-[#737168] dark:text-[#7E7C74] font-mono flex items-center justify-between">
-                  <span>LC 175+ · GFG 80+ · HR 120+</span>
-                  <span className="text-[#284E3A] dark:text-[#4E8767]">Java</span>
-                </div>
-              </div>
+            <p className="font-mono text-xs text-[#999999]">
+              Software Developer · Technical Educator · Founder
+            </p>
 
-              <div className="p-3.5 bg-[#F5F3EC] dark:bg-[#1B1D1B] border border-[#E8E6DB] dark:border-[#252825] transition-colors">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#737168] dark:text-[#7E7C74]">
-                      Technical Education
-                    </span>
-                    <div className="font-serif text-3xl font-medium text-[#141413] dark:text-[#F2F1ED]">
-                      150+
-                    </div>
-                  </div>
-                  <Users className="w-5 h-5 text-[#284E3A] dark:text-[#4E8767] mt-1" />
-                </div>
-                <div className="mt-2 text-xs text-[#737168] dark:text-[#7E7C74] font-mono flex items-center justify-between">
-                  <span>Students Mentored in DSA & Web</span>
-                  <span className="text-[#284E3A] dark:text-[#4E8767]">State Rank 2</span>
-                </div>
-              </div>
-
-              <div className="p-3.5 bg-[#F5F3EC] dark:bg-[#1B1D1B] border border-[#E8E6DB] dark:border-[#252825] transition-colors">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-0.5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#737168] dark:text-[#7E7C74]">
-                      Venture & Ecosystem
-                    </span>
-                    <div className="font-serif text-2xl font-medium text-[#141413] dark:text-[#F2F1ED]">
-                      ₹10,00,000
-                    </div>
-                  </div>
-                  <Award className="w-5 h-5 text-[#284E3A] dark:text-[#4E8767] mt-1" />
-                </div>
-                <div className="mt-2 text-xs text-[#737168] dark:text-[#7E7C74] font-mono">
-                  <span>Seed Funding · Startup Bihar (Founder)</span>
-                </div>
-              </div>
+            {/* Meta badges */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#999999] bg-[#1a1b1c] border border-[#333333] rounded-md px-2 py-0.5">
+                <MapPin className="w-3 h-3 text-[#b3b3b3]" />
+                West Champaran, Bihar, India
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-[#999999] bg-[#1a1b1c] border border-[#333333] rounded-md px-2 py-0.5">
+                <GraduationCap className="w-3 h-3 text-[#b3b3b3]" />
+                GLA University &apos;24 (B.Tech CSE)
+              </span>
             </div>
+          </div>
+        </div>
 
-            {/* Academic Footnote */}
-            <div className="pt-4 border-t border-[#EAE8DE] dark:border-[#202220] text-xs font-mono text-[#737168] dark:text-[#7E7C74] space-y-1">
-              <div className="flex justify-between">
-                <span>Degree</span>
-                <span className="text-[#141413] dark:text-[#F2F1ED]">B.Tech in CSE</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Alma Mater</span>
-                <span className="text-[#141413] dark:text-[#F2F1ED]">GLA University</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Graduation</span>
-                <span className="text-[#141413] dark:text-[#F2F1ED]">June 2024</span>
-              </div>
-            </div>
+        {/* Bio bullet points */}
+        <div className="mt-5 pt-4 border-t border-[#333333]">
+          <ul className="space-y-2 text-sm text-[#b3b3b3] leading-relaxed">
+            <li className="relative pl-4 before:content-['–'] before:absolute before:left-0 before:text-[#555555]">
+              <span className="text-white font-medium">Building things. Solving problems. Sharing knowledge.</span>
+            </li>
+            <li className="relative pl-4 before:content-['–'] before:absolute before:left-0 before:text-[#555555]">
+              Software developer and computer science educator passionate about building useful digital products, solving complex problems, and helping others understand technology.
+            </li>
+            <li className="relative pl-4 before:content-['–'] before:absolute before:left-0 before:text-[#555555]">
+              Computer Science Instructor at <span className="text-white">Champaran Group of Institutions</span> (mentored 150+ students in DSA, Web, and Cloud; coached State Rank 2 in Bihar Polytechnic).
+            </li>
+            <li className="relative pl-4 before:content-['–'] before:absolute before:left-0 before:text-[#555555]">
+              Solved <span className="text-[#02ff67] font-mono font-medium">400+</span> DSA problems in Java (LeetCode 175+, GeeksforGeeks 80+, HackerRank 120+).
+            </li>
+            <li className="relative pl-4 before:content-['–'] before:absolute before:left-0 before:text-[#555555]">
+              Secured <span className="text-white font-medium">₹10,00,000</span> in seed funding in March 2025 from Startup Bihar for <span className="text-white">Essence Royale</span> as sole founder.
+            </li>
+          </ul>
+        </div>
+
+        {/* Actions Row */}
+        <div className="mt-5 pt-4 border-t border-[#333333] flex flex-wrap items-center justify-between gap-3">
+          {/* Email button with copy interaction */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleCopyEmail}
+              className="inline-flex items-center gap-2 bg-[#1a1b1c] hover:bg-[#232326] text-white border border-[#333333] hover:border-[#666666] rounded-md px-3.5 py-1.5 text-xs font-medium transition-all shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-[#02ff67]" />
+                  <span>Email Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Mail className="w-3.5 h-3.5 text-[#b3b3b3]" />
+                  <span>{PERSONAL_DETAILS.email}</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Social Pills */}
+          <div className="flex items-center gap-2">
+            <a
+              href={PERSONAL_DETAILS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+            >
+              <GithubIcon className="w-3.5 h-3.5" />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href={PERSONAL_DETAILS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+            >
+              <LinkedinIcon className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href={`tel:${PERSONAL_DETAILS.phone.replace(/\s+/g, '')}`}
+              className="inline-flex items-center gap-1.5 bg-[#1a1b1c] hover:bg-[#232326] text-[#b3b3b3] hover:text-white border border-[#333333] hover:border-[#666666] rounded-md px-2.5 py-1.5 text-xs transition-colors"
+            >
+              <Phone className="w-3 h-3" />
+              <span className="hidden sm:inline">Call</span>
+            </a>
           </div>
         </div>
       </div>

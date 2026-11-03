@@ -1,24 +1,22 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import AboutSection from '@/components/AboutSection';
+import SkillsMarquee from '@/components/SkillsMarquee';
 import SelectedWork from '@/components/SelectedWork';
 import ExperienceSection from '@/components/ExperienceSection';
 import ProblemSolvingSection from '@/components/ProblemSolvingSection';
-import TechnicalSkillsSection from '@/components/TechnicalSkillsSection';
 import LeadershipAchievementsSection from '@/components/LeadershipAchievementsSection';
 import ContactSection from '@/components/ContactSection';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col bg-[#0b0d0e] text-[#b3b3b3]">
       <Navbar />
       <main id="main-content" className="flex-1">
         <Hero />
-        <AboutSection />
+        <SkillsMarquee />
         <SelectedWork />
         <ExperienceSection />
         <ProblemSolvingSection />
-        <TechnicalSkillsSection />
         <LeadershipAchievementsSection />
       </main>
       <ContactSection />
