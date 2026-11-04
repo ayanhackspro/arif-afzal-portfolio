@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     'Essence Royale Founder',
     'DSA in Java',
   ],
+  icons: {
+    icon: '/avatar.jpg',
+    apple: '/avatar.jpg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -39,12 +43,21 @@ export const metadata: Metadata = {
     description:
       'Building things. Solving problems. Sharing knowledge. Software developer, educator, and startup founder from West Champaran, Bihar.',
     siteName: 'Arif Afzal',
+    images: [
+      {
+        url: '/avatar.jpg',
+        width: 800,
+        height: 1000,
+        alt: 'Arif Afzal — Software Developer & Educator',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Arif Afzal — Software Developer, CS Instructor & Founder',
     description:
       'Building things. Solving problems. Sharing knowledge. Explore selected systems, technical teaching, and startup achievements.',
+    images: ['/avatar.jpg'],
   },
   robots: {
     index: true,
@@ -66,6 +79,7 @@ export default function RootLayout({
     name: PERSONAL_DETAILS.name,
     jobTitle: 'Software Developer & Computer Science Educator',
     description: PERSONAL_DETAILS.tagline,
+    image: 'https://arifafzal.dev/avatar.jpg',
     url: 'https://arifafzal.dev',
     email: PERSONAL_DETAILS.email,
     telephone: PERSONAL_DETAILS.phone,
@@ -102,6 +116,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
+        <link rel="icon" type="image/jpeg" href="/avatar.jpg" />
+        <link rel="apple-touch-icon" href="/avatar.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

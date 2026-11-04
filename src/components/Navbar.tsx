@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Star, Menu, X, ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from './icons';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
@@ -24,9 +25,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14">
           {/* Left: Avatar + Name */}
           <Link href="#home" className="flex items-center gap-2.5 group">
-            <div className="relative">
-              <div className="w-8 h-8 rounded-full bg-[#1a1b1c] border border-[#333333] flex items-center justify-center text-xs font-mono font-semibold text-white group-hover:border-[#666666] transition-colors">
-                AA
+            <div className="relative shrink-0">
+              <div className="w-8 h-8 rounded-full overflow-hidden bg-[#1a1b1c] border border-[#333333] group-hover:border-[#666666] transition-colors">
+                <Image
+                  src="/avatar.jpg"
+                  alt="Arif Afzal"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#02ff67] rounded-full border-2 border-[#0b0d0e] shadow-[0_0_6px_#02ff67]"></span>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Mail, Check, MapPin, GraduationCap, ArrowUpRight, Phone } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './icons';
 import { PERSONAL_DETAILS } from '@/data/portfolioData';
@@ -32,8 +33,15 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
           {/* Avatar with pulsing status indicator */}
           <div className="relative shrink-0 self-start">
-            <div className="w-[72px] h-[72px] rounded-full bg-[#1a1b1c] border-2 border-[#222222] flex items-center justify-center text-xl font-mono font-bold text-white shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
-              AA
+            <div className="w-[72px] h-[72px] rounded-full overflow-hidden bg-[#1a1b1c] border-2 border-[#222222] shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+              <Image
+                src="/avatar.jpg"
+                alt="Arif Afzal"
+                width={72}
+                height={72}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
             <span
               className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-[#02ff67] rounded-full border-2 border-[#0b0d0e] animate-status-glow"
